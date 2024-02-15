@@ -1,9 +1,32 @@
-// Créer un événement au click sur le hamburger menu pour sortir la sidebar, ranger la sidebar si on reclick dessus
+const navbar = document.getElementById("side-bar");
+const section = document.querySelector(".content");
+const navbarOpen = () => {
+  navbar.style.left = 0;
+  btn.children[0].style.transform = "rotate(45deg) translate(20px)";
+  btn.children[1].style.opacity = 0;
+  btn.children[2].style.transform = "rotate(-45deg) translate(20px)";
+};
+const navbarClose = () => {
+  navbar.style.left = "-230px";
+  btn.children[0].style.transform = "rotate(0)";
+  btn.children[1].style.opacity = 1;
+  btn.children[2].style.transform = "rotate(0)";
+};
+let navbarMove = false;
 
-// Ranger la sidebar si on click sur le contenu principal
-
-// BONUS
-// Créer en css l'hamburger menu qui se transforme en croix
-
-// Aide
-// Priorités en CSS : id > classe > baliseHtml
+btn.addEventListener("click", () => {
+  navbarMove = !navbarMove;
+  console.log(navbarMove);
+  if (navbarMove === true) {
+    navbarOpen();
+  } else {
+    navbarClose();
+  }
+});
+section.addEventListener("click", () => {
+  console.log(navbarMove);
+  if (navbarMove === true) {
+    navbarClose();
+    navbarMove = false;
+  }
+});
